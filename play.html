@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Game Portal Pro</title>
+    <link rel="stylesheet" href="/assets/styles/style.css" />
+    <link rel="stylesheet" href="/assets/styles/play.css" />
+    <link
+      rel="shortcut icon"
+      href="/assets/favicons/favicon.png"
+      type="image/png"
+    />
+  </head>
+  <body>
+    <nav class="navBar">
+      <a href="/">
+        <img
+          src="/assets/favicons/favicon.png"
+          alt="logo"
+          class="navLogoImage"
+        />
+      </a>
+      <div class="navLinks">
+        <a href="/apps.html" class="navLink">Apps</a>
+        <a href="/games.html" class="navLink">Games</a>
+      </div>
+    </nav>
+
+    <div class="gameArea">
+      <iframe frameborder="0" id="gameFrame"></iframe>
+      <div class="gameToolBar">
+        <div class="gameInfo">
+          <img id="gameImage" />
+          <div id="gameName"></div>
+          <div id="gameAuthor"></div>
+        </div>
+        <div class="gameToolButtons">
+          <button class="toolBtn fsButton" title="Fullscreen">⛶</button>
+          <button class="toolBtn abtBlnkButton" title="Open in new tab">
+            ↗
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/scripts/play.js"></script>
+  </body>
+</html>

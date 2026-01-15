@@ -1,0 +1,94 @@
+:root {
+  --bg: #0b0f1a;
+  --card: #11162a;
+  --accent: #5ee7ff;
+  --text: #ffffff;
+  --muted: #9aa4c7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(1200px 600px at top, #10172f, var(--bg));
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ===== Floating Glass Navbar ===== */
+.navBar {
+  position: sticky;
+  top: 16px;
+  margin: 0 20px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(15, 20, 41, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(94, 231, 255, 0.15);
+  border-radius: 18px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+
+  z-index: 1000;
+}
+
+/* Logo */
+.navLogoImage {
+  width: 48px;
+  height: 48px;
+  display: block;
+  border-radius: 25%;
+}
+
+/* Right-side links wrapper */
+.navLinks {
+  display: flex;
+  gap: 12px;
+}
+
+/* Button-style nav links */
+.navLink {
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+
+  background: linear-gradient(145deg, #151b36, #0f1429);
+
+  border: 1px solid #1a2340;
+  border-radius: 12px;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.navLink:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 25px rgba(94, 231, 255, 0.25);
+}
+
+.navLink:active {
+  transform: translateY(0);
+}
+
+/* ===== Title ===== */
+.title {
+  text-align: center;
+  margin-top: 80px;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(90deg, #ffffff, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

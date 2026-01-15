@@ -1,0 +1,14 @@
+[
+  {
+    "id": 0,
+    "name": "Pluto TV",
+    "url": "https://pluto.tv",
+    "slug": "pluto-tv"
+  },
+  {
+    "id": 1,
+    "name": "Gauth AI",
+    "url": "https://gauthmath.com",
+    "slug": "gauth-ai"
+  }
+]

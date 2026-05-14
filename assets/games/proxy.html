@@ -1,386 +1,157 @@
-<!DOCTYPE html>
-<!-- I see you deke you flipping bum why are you in the source code-->
+DOCTYPE html>
 <html>
 <head>
-<link rel="icon" href="https://donuts2.w3spaces.com/cursor.png" sizes="32x32" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donut Proxy</title>
+    <link rel="icon" href="https://donuts2.w3spaces.com/cursor.png"
+sizes="32x32" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
 rel="stylesheet">
+    <style>
+        :root {
+            --btnclr: #ff71a7;
+            --bckclr: #000000;
+        }
+        body {
+            background-color: var(--bckclr);
+            cursor: url(https://donuts2.w3spaces.com/cursor.png), auto;
+            margin: 0;
+            padding: 40px 20px;
+            font-family: "Jost", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: var(--btnclr);
+            font-size: 45px;
+            letter-spacing: 10px;
+            text-shadow: 1px 1px 6px var(--btnclr), 1px 1px 6px var(--btnclr);
+            margin-bottom: 5px;
+        }
+        p.link-text {
+            color: var(--btnclr);
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-shadow: 1px 1px 3px var(--btnclr);
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        .input-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            width: 100%;
+        }
+        #customUrlInput {
+            width: 70%;
+            height: 45px;
+            border-radius: 10px;
+            border: 2px solid var(--btnclr);
+            background: transparent;
+            color: var(--btnclr);
+            font-size: 18px;
+            padding: 5px 15px;
+            outline: none;
+            box-shadow: 0 0 10px var(--btnclr);
+            font-family: 'Jost', sans-serif;
+            transition: 0.3s ease-in-out;
+        }
+        #customUrlInput:focus {
+            box-shadow: 0 0 20px var(--btnclr);
+        }
+        .btn-submit {
+            cursor: url(https://donuts2.w3spaces.com/cursor.png), auto;
+            background-color: transparent;
+            border: 2px solid var(--btnclr);
+            color: var(--btnclr);
+            font-size: 16px;
+            letter-spacing: 2px;
+            width: 100px;
+            height: 59px;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px var(--btnclr), inset 0 0 5px var(--btnclr);
+            font-family: "Jost", sans-serif;
+        }
+        .btn-submit:hover {
+            background-color: var(--btnclr);
+            color: var(--bckclr);
+            box-shadow: 0 0 20px var(--btnclr);
+            font-weight: bold;
+        }
+    </style>
 </head>
-<title>Donut Games</title>
-<meta charset="utf-8" />
-<body style="background-color: var(--bckclr); cursor: url(cursor.png), auto;">
-<style>
-.button {
-position: relative;
-cursor: url(https://donuts2.w3spaces.com/cursor.png), auto;
-width: 10%; aspect-ratio: 1 / 1; /* forces a perfect square */ height: auto;
-border-radius: 20px;
-overflow: hidden;
-border: 2px solid var(--btnclr);
-box-shadow: 0 0 10px var(--btnclr), inset 0 0 5px var(--btnclr);
-background-color: transparent;
-transition: 0.3s ease-in-out;
-padding: 0;
-}
+<body>
 
-/* Image fills entire button */
-.button img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-display: block;
-transition: 0.3s ease-in-out;
-filter: brightness(0.8);
-}
+    <div class="container">
+        <h1>DONUT PROXY</h1>
 
-/* Text overlay (hidden by default) */
-.button span {
-position: absolute;
-bottom: 0;
-left: 50%;
-transform: translateX(-50%); /* centers it perfectly */
-width: 100%;
-padding: 10px 0;
-background: rgba(0,0,0,0.6);
-color: white;
-font-family: "Jost", sans-serif;
-font-size: 16px;
-letter-spacing: 2px;
-text-align: center;
-opacity: 0;
-transition: 0.3s ease-in-out;
-}
+        <p class="link-text"><b>I HAVE MADE NO MONEY FROM THIS PROJECT</b></p>
+        <p class="link-text">This is an experimental proxy. Some
+third-party elements or websites may refuse connections inside
+sandboxed layouts.</p>
 
+        <div class="input-group">
+            <input id="customUrlInput" type="text" placeholder="Enter
+any URL (e.g., google.com)..." onkeydown="if(event.key === 'Enter')
+openCustomUrl()">
+            <button class="btn-submit" onclick="openCustomUrl()">OPEN</button>
+        </div>
+    </div>
 
-/* Hover effects */
-.button:hover img {
-filter: brightness(0.4);
-transform: scale(1.05);
-}
+    <script>
+        function playInIframe(url) {
+            const win = window.open("about:blank", "_blank");
+            if (!win) {
+                alert("Pop-up blocked! Please allow pop-ups for this domain.");
+                return;
+            }
 
-.button:hover span {
-opacity: 1;
-}
-
-
-.clrb {
-cursor: url(https://donuts2.w3spaces.com/cursor.png), auto;
-background-color: transparent;
-border: 2px solid var(--btnclr);
-color: var(--btnclr);
-font-size: 14px;
-width: 100px;
-height: 30px;
-border-radius: 7px;
-transition: all 0.3s ease-in-out;
-box-shadow: 0 0 10px var(--btnclr) , inset 0 0 5px var(--btnclr) ;
-font-family: "Jost", sans-serif;
-}
-.button2 {
-cursor: url(https://www.donutlocations.com/img/favicon.ico);
-background-color: transparent;
-border: 2px solid var(--btnclr);
-color: var(--btnclr) ;
-font-size: 14px;
-width: 22%;
-height: 40px;
-border-radius: 5px;
-cursor: pointer;
-transition: all 0.3s ease-in-out;
-box-shadow: 0 0 10px var(--btnclr) , inset 0 0 5px var(--btnclr) ;
-font-family: "Jost", sans-serif;
-}
-
-.button2:hover {
-background-color: var(--btnclr) ;
-color: var(--bckclr);
-border-radius: 100px;
-cursor: url(https://www.donutlocations.com/img/favicon.ico);
-color: var(--bckclr);
-box-shadow: 0 0 20px var(--btnclr), inset 0 0 5px var(--btnclr) ;
-}
-.button-grid {
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-cursor: url(https://www.donutlocations.com/img/favicon.ico);
-padding: 15px;
-gap: 10px;
-}
-h1{
-cursor: url(https://www.donutlocations.com/img/favicon.ico);
-color: var(--btnclr);
-font-size: 50px;
-text-align: center;
-font-family: "Jost", sans-serif;
-letter-spacing: 12px;
-text-shadow:1px 1px 6px var(--btnclr) , 1px 1px 6px var(--btnclr) ;
-}
-h2{
-cursor: url(https://donuts2.w3spaces.com/cursor.png), auto;
-color: var(--btnclr);
-font-size: 15px;
-text-align: center;
-font-family: "Jost", sans-serif;
-letter-spacing: 4px;
-var(--btnclr) ;
-}
-.link{
-cursor: url(https://www.donutlocations.com/img/favicon.ico); auto;
-color: var(--btnclr);
-font-size: 13px;
-text-align: center;
-font-family: "Jost", sans-serif;
-letter-spacing: 6px;
-text-shadow:1px 1px 3px var(--btnclr) , 1px 1px 3px var(--btnclr) ;
-}
-.button-grid2 {
-display: flex;
-cursor: url(https://donuts2.w3spaces.com/cursor.png), auto;
-justify-content: center;
-flex-wrap: wrap;
-}
-.dark {
-display: flex;
-cursor: url(https://donuts2.w3spaces.com/cursor.png), auto;
-justify-content: right;
-flex-wrap: wrap;
-}
-
-</style>
-<div class="dark">
-<button onclick="changedark('#000000'), changeback('#ffffff')"
-class="clrb">Change color</button>
-</div>
-<div class="button-grid">
-<h1>DONUT GAMES</h1>
-</div>
-<div class="button-grid">
-</div>
-<br>
-<br>
-<div class="button-grid">
-<h2>ALVIE LIKES KIDS<h2>
-
-<div class="button-grid"> <input type="text" id="search"
-placeholder="Search games..."
-style="width:90%;max-width:400px;height:40px;border-radius:10px;border:2px
-solid var(--btnclr);background:transparent;color:var(--btnclr);font-size:18px;padding:5px
-10px;outline:none;box-shadow:0 0 10px
-var(--btnclr);font-family:'Jost',sans-serif;"> </div>
-
-<div class="button-grid" id="game-buttons"></div>
-
-<p class="link"><b>I HAVE MADE NO MONEY FROM THIS PROJECT</b></p>
-<br>
-<br>
-<p class="link">this is an expiremental proxy. some websites may not work</p>
-<div id="custom-url-box" class="button-grid"> <input
-id="customUrlInput" type="text" placeholder="Enter any URL..."
-style="width:90%;max-width:400px;height:40px;border-radius:10px;border:2px
-solid var(--btnclr);background:transparent;color:var(--btnclr);font-size:18px;padding:5px
-10px;outline:none;box-shadow:0 0 10px
-var(--btnclr);font-family:'Jost',sans-serif;"> <button class="button"
-onclick="openCustomUrl()">open</button> </div>
-<p id="game-count"></p>
-
-<script>
-const hideKeywords = [
-"baldi",
-"adventure",
-"bad",
-"race",
-"aqua",
-"alien",
-"merge",
-"robbery",
-"bfdia",
-"archery",
-"friday",
-"run",
-"build",
-"baz",
-"port",
-"master",
-"arthur",
-"blade",
-"bloo",
-"achieve",
-"-battle",
-"fu",
-"cut-",
-"bend",
-"basketball",
-"frvr",
-"ball-",
-];
-
-function shouldHide(name) {
-const lower = name.toLowerCase();
-return hideKeywords.some(k => lower.includes(k));
-}
-function setButtonColor(color) {
-document.body.style.setProperty('--btnclr', color);
-}
-function setBackgroundColor(color) {
-document.body.style.setProperty('--bckclr', color);
-}
-setButtonColor('#ff71a7');
-setBackgroundColor('black');
-async function opengame(url) {
-const res = await fetch(url);
-if (!res.ok) return;
-
-const html = await res.text();
-const win = window.open();
-if (!win) return;
-
-win.document.body.style.margin = "0";
-win.document.body.style.height = "100vh";
-
-const iframe = win.document.createElement("iframe");
-iframe.style.border = "none";
-iframe.style.width = "100%";
-iframe.style.height = "100%";
-iframe.srcdoc = html;
-
-win.document.body.appendChild(iframe);
-}
-function playInIframe(url) {
-const win = window.open("about:blank", "_blank");
-if (!win) return;
-
-setTimeout(() => {
-const doc = win.document;
-const iframe = doc.createElement("iframe");
-iframe.src = url;
-iframe.style.position = "fixed";
-iframe.style.top = "0";
-iframe.style.left = "0";
-iframe.style.width = "100vw";
-iframe.style.height = "100vh";
-iframe.style.border = "none";
-iframe.sandbox = "allow-scripts allow-same-origin allow-pointer-lock
+            setTimeout(() => {
+                const doc = win.document;
+                const iframe = doc.createElement("iframe");
+                iframe.src = url;
+                iframe.style.position = "fixed";
+                iframe.style.top = "0";
+                iframe.style.left = "0";
+                iframe.style.width = "100vw";
+                iframe.style.height = "100vh";
+                iframe.style.border = "none";
+                iframe.sandbox = "allow-scripts allow-pointer-lock
 allow-forms allow-popups";
-iframe.allowFullscreen = true;
-doc.body.style.margin = "0";
-doc.body.appendChild(iframe);
-}, 200);
-}
-function updateGameCount() {
-const count = document.querySelectorAll("#game-buttons button").length;
-const el = document.getElementById("game-count");
-if (el) el.textContent = "Total Games: " + count;
-}
-async function loadGames() {
-const gamesApi =
-"https://api.github.com/repos/lewismann623-creator/cheetopuff/contents/assets/games";
-const imagesApi =
-"https://api.github.com/repos/lewismann623-creator/cheetopuff/contents/assets/images";
+                iframe.allowFullscreen = true;
+                doc.body.style.margin = "0";
+                doc.body.appendChild(iframe);
+            }, 200);
+        }
 
-const [gamesRes, imagesRes] = await Promise.all([
-fetch(gamesApi),
-fetch(imagesApi)
-]);
+        function openCustomUrl() {
+            const input = document.getElementById("customUrlInput");
+            if (!input) return;
 
-const gameFiles = await gamesRes.json();
-const imageFiles = await imagesRes.json();
+            const url = input.value.trim();
+            if (!url) {
+                alert("Please enter a destination web URL first.");
+                return;
+            }
 
-const games = {};
-
-// Process HTML game files
-gameFiles.forEach(file => {
-if (file.name.endsWith(".html")) {
-const name = file.name.split(".")[0];
-games[name] = { html: file.download_url };
-}
-});
-
-// Process images
-imageFiles.forEach(file => {
-if (file.name.match(/\.(png|jpg|jpeg|gif)$/i)) {
-const name = file.name.split(".")[0];
-if (!games[name]) games[name] = {};
-games[name].img = file.download_url;
-}
-});
-
-const container = document.getElementById("game-buttons");
-
-Object.keys(games).forEach(name => {
-if (!games[name].html) return;
-if (shouldHide(name)) return;
-
-const game = games[name];
-
-const btn = document.createElement("button");
-btn.className = "button";
-
-btn.innerHTML = `
-<img src="${game.img || ''}" loading="lazy">
-<span>${name.replace(/-/g, " ")}</span>
-`;
-
-btn.onclick = () => opengame(game.html);
-
-container.appendChild(btn);
-});
-
-updateGameCount();
-}
-function addGame(name, icon, url) {
-if (shouldHide(name)) return;
-
-const container = document.getElementById("game-buttons");
-
-const btn = document.createElement("button");
-btn.className = "button";
-
-btn.innerHTML = `
-<img src="${icon}">
-<span>${name}</span>
-`;
-
-btn.onclick = () => playInIframe(url);
-
-container.appendChild(btn);
-updateGameCount();
-}
-function openCustomUrl() {
-const input = document.getElementById("customUrlInput");
-if (!input) return;
-
-const url = input.value.trim();
-if (!url) return alert("Enter a URL first");
-
-const finalUrl = url.startsWith("http") ? url : "https://" + url;
-playInIframe(finalUrl);
-}
-document.getElementById("search").addEventListener("input", function () {
-const term = this.value.toLowerCase();
-const buttons = document.querySelectorAll("#game-buttons button");
-
-buttons.forEach(btn => {
-const text = btn.textContent.toLowerCase();
-btn.style.display = text.includes(term) ? "flex" : "none";
-});
-});
-
-(async () => {
-await loadGames();
-
-addGame("deadshot", "https://deadshot.io/favicon.png", "https://deadshot.io");
-addGame("escape road working",
-"https://api.github.com/repos/lewismann623-creator/cheetopuff/contents/assets/images/escape-road.png",
-"https://escaperoad.io/escape-road");
-addGame("ships 3d", "https://yp3d.com/favicon.png", "https://yp3d.com/ships3d");
-addGame("speed stars", "https://1games.io/speed-stars",
-"https://speedstars2.io");
-})();
-</script>
-
-
+            const finalUrl = url.startsWith("http://") ||
+url.startsWith("https://") ? url : "https://" + url;
+            playInIframe(finalUrl);
+        }
+    </script>
 </body>
 </html>

@@ -3,179 +3,52 @@
 <head>
     <title>Not Real Games</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="googleapis.com">
-    <link rel="preconnect" href="gstatic.com" crossorigin>
-    <link href="googleapis.com" rel="stylesheet">
-    <style>
-        :root {
-            --bckclr: #0a0714;
-            --btnclr: #b549ff;
-            --panel-glow: rgba(181, 73, 255, 0.2);
-            --border-frame: rgba(255, 255, 255, 0.07);
-        }
-
-        /* Custom Responsive Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bckclr); }
-        ::-webkit-scrollbar-thumb { background: var(--btnclr);
-border-radius: 10px; }
-
-        body {
-            margin: 0;
-            padding: 40px 20px;
-            box-sizing: border-box;
-            min-height: 100vh;
-            background-color: var(--bckclr);
-            background-image: radial-gradient(circle at 50% 30%,
-#24113a 0%, var(--bckclr) 70%);
-            font-family: "Jost", sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        h1 {
-            color: #ffffff;
-            font-size: clamp(2rem, 6vw, 3.8rem);
-            text-align: center;
-            letter-spacing: 12px;
-            margin: 0 0 30px 0;
-            font-weight: 900;
-            text-transform: uppercase;
-            text-shadow: 0 0 25px var(--panel-glow);
-        }
-
-        /* Premium Frosted Proxy Wrapper Panel */
-        .proccy {
-            display: flex;
-            width: 100%;
-            max-width: 550px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-frame);
-            padding: 16px;
-            border-radius: 20px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(12px);
-            gap: 12px;
-            box-sizing: border-box;
-        }
-
-        /* Search Layout Node */
-        #proccyInput {
-            flex: 1;
-            height: 46px;
-            border-radius: 12px;
-            border: 1px solid var(--border-frame);
-            background: rgba(255, 255, 255, 0.02);
-            color: #ffffff;
-            font-size: 16px;
-            padding: 0 16px;
-            outline: none;
-            font-family: 'Jost', sans-serif;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-
-        #proccyInput:focus {
-            border-color: var(--btnclr);
-            box-shadow: 0 0 20px var(--panel-glow);
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        /* Action Launcher Button */
-        #proccyButton {
-            background-color: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--btnclr);
-            color: var(--btnclr);
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            padding: 0 26px;
-            height: 46px;
-            border-radius: 12px;
-            text-transform: uppercase;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px var(--panel-glow);
-            font-family: "Jost", sans-serif;
-        }
-
-        #proccyButton:hover {
-            background-color: var(--btnclr);
-            color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px var(--btnclr);
-        }
-
-        #proccyButton:active {
-            transform: translateY(0);
-        }
-
-        /* Mobile Scale Override Layout rules */
-        @media (max-width: 480px) {
-            .proccy {
-                flex-direction: column;
-                gap: 15px;
-                padding: 20px;
-            }
-            #proccyButton {
-                width: 100%;
-            }
-        }
-    </style>
 </head>
 <body>
+<h1>Not Real Games</h1>
+<div class="proccy">
+    <input id="proccyInput" type="text" placeholder="Enter any URL..." />
+    <button id="proccyButton">Proccy</button>
+</div>
 
-    <h1>Not Real Games</h1>
 
-    <div class="proccy">
-        <input id="proccyInput" type="text" placeholder="Enter any URL..." />
-        <button id="proccyButton">Proccy</button>
-    </div>
+<script>
+const input = document.getElementById("proccyInput");
+const button = document.getElementById("proccyButton");
 
-    <script>
-        const input = document.getElementById("proccyInput");
-        const button = document.getElementById("proccyButton");
+function playInIframe(url) {
+  const win = window.open("about:blank", "_blank");
+  if (!win) return;
 
-        function playInIframe(url) {
-            const win = window.open("about:blank", "_blank");
-            if (!win) return;
-            setTimeout(() => {
-                const doc = win.document;
-                const iframe = doc.createElement("iframe");
-                iframe.src = url;
-                iframe.style.position = "fixed";
-                iframe.style.top = "0";
-                iframe.style.left = "0";
-                iframe.style.width = "100vw";
-                iframe.style.height = "100vh";
-                iframe.style.border = "none";
-                iframe.sandbox = "allow-scripts allow-same-origin
-allow-pointer-lock allow-forms allow-popups";
-                iframe.allowFullscreen = true;
-                doc.body.style.margin = "0";
-                doc.body.appendChild(iframe);
-            }, 200);
-        }
 
-        function proccy() {
-            if (!input) return;
-            const url = input.value.trim();
-            if (!url) return alert("Enter a URL first");
-            const finalUrl = url.startsWith("http") ? url : "https://" + url;
-            playInIframe(finalUrl);
-        }
+  setTimeout(() => {
+      const doc = win.document;
+      const iframe = doc.createElement("iframe");
+      iframe.src = url;
+      iframe.style.position = "fixed";
+      iframe.style.top = "0";
+      iframe.style.left = "0";
+      iframe.style.width = "100vw";
+      iframe.style.height = "100vh";
+      iframe.style.border = "none";
+      iframe.sandbox = "allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-popups";
+      iframe.allowFullscreen = true;
+      doc.body.style.margin = "0";
+      doc.body.appendChild(iframe);
+  }, 200);
+}
 
-        button.addEventListener("click", () => {
-            proccy()
-        })
+function proccy() {
+  if (!input) return;
+  const url = input.value.trim();
+  if (!url) return alert("Enter a URL first");
+const finalUrl = url.startsWith("http") ? url : "https://" + url;
+  playInIframe(finalUrl);
+}
 
-        // Let user press Enter key inside proxy bar to activate trigger node
-        input.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") proccy();
-        });
-    </script>
+button.addEventListener("click", () => {
+    proccy()
+})
+</script>
 </body>
 </html>

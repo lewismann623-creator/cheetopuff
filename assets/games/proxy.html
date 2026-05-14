@@ -1,148 +1,54 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
+    <title>Not Real Games</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donut Proxy</title>
-    <link rel="icon" href="w3spaces.com" sizes="32x32" />
-    <link rel="preconnect" href="googleapis.com">
-    <link rel="preconnect" href="gstatic.com" crossorigin>
-    <link href="googleapis.com" rel="stylesheet">
-    <style>
-        :root {
-            --btnclr: #ff71a7;
-            --bckclr: #000000;
-        }
-        body {
-            background-color: var(--bckclr);
-            cursor: url(w3spaces.com), auto;
-            margin: 0;
-            padding: 40px 20px;
-            font-family: "Jost", sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 80vh;
-        }
-        .container {
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-        }
-        h1 {
-            color: var(--btnclr);
-            font-size: 50px;
-            text-align: center;
-            letter-spacing: 12px;
-            text-shadow: 1px 1px 6px var(--btnclr), 1px 1px 6px var(--btnclr);
-            margin-bottom: 20px;
-        }
-        .link {
-            color: var(--btnclr);
-            font-size: 13px;
-            text-align: center;
-            letter-spacing: 6px;
-            text-shadow: 1px 1px 3px var(--btnclr), 1px 1px 3px var(--btnclr);
-            margin: 15px 0;
-            line-height: 1.6;
-        }
-        .button-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 15px;
-            gap: 10px;
-            width: 100%;
-        }
-        #customUrlInput {
-            width: 90%;
-            max-width: 400px;
-            height: 40px;
-            border-radius: 10px;
-            border: 2px solid var(--btnclr);
-            background: transparent;
-            color: var(--btnclr);
-            font-size: 18px;
-            padding: 5px 10px;
-            outline: none;
-            box-shadow: 0 0 10px var(--btnclr);
-            font-family: 'Jost', sans-serif;
-        }
-        /* Fixed explicit button layout sizing */
-        .action-btn {
-            cursor: url(w3spaces.com), auto;
-            background-color: transparent;
-            border: 2px solid var(--btnclr);
-            color: var(--btnclr);
-            font-size: 16px;
-            width: 100px;
-            height: 54px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px var(--btnclr), inset 0 0 5px var(--btnclr);
-            font-family: 'Jost', sans-serif;
-            transition: 0.3s ease-in-out;
-            letter-spacing: 1px;
-        }
-        .action-btn:hover {
-            background-color: var(--btnclr);
-            color: var(--bckclr);
-            box-shadow: 0 0 20px var(--btnclr);
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
+<h1>Not Real Games</h1>
+<div class="proccy">
+    <input id="proccyInput" type="text" placeholder="Enter any URL..." />
+    <button id="proccyButton">Proccy</button>
+</div>
 
-    <div class="container">
-        <h1>DONUT PROXY</h1>
 
-        <p class="link"><b>I HAVE MADE NO MONEY FROM THIS PROJECT</b></p>
-        <p class="link">this is an expiremental proxy. some websites
-may not work</p>
+<script>
+const input = document.getElementById("proccyInput");
+const button = document.getElementById("proccyButton");
 
-        <div id="custom-url-box" class="button-grid">
-            <input id="customUrlInput" type="text" placeholder="Enter
-any URL..." onkeydown="if(event.key === 'Enter') openCustomUrl()">
-            <button class="action-btn" onclick="openCustomUrl()">open</button>
-        </div>
-    </div>
+function playInIframe(url) {
+  const win = window.open("about:blank", "_blank");
+  if (!win) return;
 
-    <script>
-        function playInIframe(url) {
-            const win = window.open("about:blank", "_blank");
-            if (!win) {
-                alert("Pop-up blocked! Please click the icon in your
-address bar to allow pop-ups.");
-                return;
-            }
-            setTimeout(() => {
-                const doc = win.document;
-                const iframe = doc.createElement("iframe");
-                iframe.src = url;
-                iframe.style.position = "fixed";
-                iframe.style.top = "0";
-                iframe.style.left = "0";
-                iframe.style.width = "100vw";
-                iframe.style.height = "100vh";
-                iframe.style.border = "none";
-                iframe.sandbox = "allow-scripts allow-same-origin
-allow-pointer-lock allow-forms allow-popups";
-                iframe.allowFullscreen = true;
-                doc.body.style.margin = "0";
-                doc.body.appendChild(iframe);
-            }, 200);
-        }
 
-        function openCustomUrl() {
-            const input = document.getElementById("customUrlInput");
-            if (!input) return;
-            const url = input.value.trim();
-            if (!url) return alert("Enter a URL first");
-            const finalUrl = url.startsWith("http") ? url : "https://" + url;
-            playInIframe(finalUrl);
-        }
-    </script>
+  setTimeout(() => {
+      const doc = win.document;
+      const iframe = doc.createElement("iframe");
+      iframe.src = url;
+      iframe.style.position = "fixed";
+      iframe.style.top = "0";
+      iframe.style.left = "0";
+      iframe.style.width = "100vw";
+      iframe.style.height = "100vh";
+      iframe.style.border = "none";
+      iframe.sandbox = "allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-popups";
+      iframe.allowFullscreen = true;
+      doc.body.style.margin = "0";
+      doc.body.appendChild(iframe);
+  }, 200);
+}
+
+function proccy() {
+  if (!input) return;
+  const url = input.value.trim();
+  if (!url) return alert("Enter a URL first");
+const finalUrl = url.startsWith("http") ? url : "https://" + url;
+  playInIframe(finalUrl);
+}
+
+button.addEventListener("click", () => {
+    proccy()
+})
+</script>
 </body>
 </html>

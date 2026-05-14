@@ -1,15 +1,13 @@
-DOCTYPE html>
+<DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donut Proxy</title>
-    <link rel="icon" href="https://donuts2.w3spaces.com/cursor.png"
-sizes="32x32" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
-rel="stylesheet">
+    <link rel="icon" href="w3spaces.com" sizes="32x32" />
+    <link rel="preconnect" href="googleapis.com">
+    <link rel="preconnect" href="gstatic.com" crossorigin>
+    <link href="googleapis.com" rel="stylesheet">
     <style>
         :root {
             --btnclr: #ff71a7;
@@ -17,7 +15,7 @@ rel="stylesheet">
         }
         body {
             background-color: var(--bckclr);
-            cursor: url(https://donuts2.w3spaces.com/cursor.png), auto;
+            cursor: url(w3spaces.com), auto;
             margin: 0;
             padding: 40px 20px;
             font-family: "Jost", sans-serif;
@@ -34,59 +32,60 @@ rel="stylesheet">
         }
         h1 {
             color: var(--btnclr);
-            font-size: 45px;
-            letter-spacing: 10px;
+            font-size: 50px;
+            text-align: center;
+            letter-spacing: 12px;
             text-shadow: 1px 1px 6px var(--btnclr), 1px 1px 6px var(--btnclr);
-            margin-bottom: 5px;
+            margin-bottom: 20px;
         }
-        p.link-text {
+        .link {
             color: var(--btnclr);
             font-size: 13px;
-            letter-spacing: 4px;
-            text-shadow: 1px 1px 3px var(--btnclr);
+            text-align: center;
+            letter-spacing: 6px;
+            text-shadow: 1px 1px 3px var(--btnclr), 1px 1px 3px var(--btnclr);
             margin: 15px 0;
             line-height: 1.6;
         }
-        .input-group {
+        .button-grid {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            margin-top: 30px;
+            flex-wrap: wrap;
+            padding: 15px;
+            gap: 10px;
             width: 100%;
         }
         #customUrlInput {
-            width: 70%;
-            height: 45px;
+            width: 90%;
+            max-width: 400px;
+            height: 40px;
             border-radius: 10px;
             border: 2px solid var(--btnclr);
             background: transparent;
             color: var(--btnclr);
             font-size: 18px;
-            padding: 5px 15px;
+            padding: 5px 10px;
             outline: none;
             box-shadow: 0 0 10px var(--btnclr);
             font-family: 'Jost', sans-serif;
-            transition: 0.3s ease-in-out;
         }
-        #customUrlInput:focus {
-            box-shadow: 0 0 20px var(--btnclr);
-        }
-        .btn-submit {
-            cursor: url(https://donuts2.w3spaces.com/cursor.png), auto;
+        /* Fixed explicit button layout sizing */
+        .action-btn {
+            cursor: url(w3spaces.com), auto;
             background-color: transparent;
             border: 2px solid var(--btnclr);
             color: var(--btnclr);
             font-size: 16px;
-            letter-spacing: 2px;
             width: 100px;
-            height: 59px;
+            height: 54px;
             border-radius: 10px;
-            transition: all 0.3s ease-in-out;
             box-shadow: 0 0 10px var(--btnclr), inset 0 0 5px var(--btnclr);
-            font-family: "Jost", sans-serif;
+            font-family: 'Jost', sans-serif;
+            transition: 0.3s ease-in-out;
+            letter-spacing: 1px;
         }
-        .btn-submit:hover {
+        .action-btn:hover {
             background-color: var(--btnclr);
             color: var(--bckclr);
             box-shadow: 0 0 20px var(--btnclr);
@@ -99,16 +98,14 @@ rel="stylesheet">
     <div class="container">
         <h1>DONUT PROXY</h1>
 
-        <p class="link-text"><b>I HAVE MADE NO MONEY FROM THIS PROJECT</b></p>
-        <p class="link-text">This is an experimental proxy. Some
-third-party elements or websites may refuse connections inside
-sandboxed layouts.</p>
+        <p class="link"><b>I HAVE MADE NO MONEY FROM THIS PROJECT</b></p>
+        <p class="link">this is an expiremental proxy. some websites
+may not work</p>
 
-        <div class="input-group">
+        <div id="custom-url-box" class="button-grid">
             <input id="customUrlInput" type="text" placeholder="Enter
-any URL (e.g., google.com)..." onkeydown="if(event.key === 'Enter')
-openCustomUrl()">
-            <button class="btn-submit" onclick="openCustomUrl()">OPEN</button>
+any URL..." onkeydown="if(event.key === 'Enter') openCustomUrl()">
+            <button class="action-btn" onclick="openCustomUrl()">open</button>
         </div>
     </div>
 
@@ -116,10 +113,10 @@ openCustomUrl()">
         function playInIframe(url) {
             const win = window.open("about:blank", "_blank");
             if (!win) {
-                alert("Pop-up blocked! Please allow pop-ups for this domain.");
+                alert("Pop-up blocked! Please click the icon in your
+address bar to allow pop-ups.");
                 return;
             }
-
             setTimeout(() => {
                 const doc = win.document;
                 const iframe = doc.createElement("iframe");
@@ -130,8 +127,8 @@ openCustomUrl()">
                 iframe.style.width = "100vw";
                 iframe.style.height = "100vh";
                 iframe.style.border = "none";
-                iframe.sandbox = "allow-scripts allow-pointer-lock
-allow-forms allow-popups";
+                iframe.sandbox = "allow-scripts allow-same-origin
+allow-pointer-lock allow-forms allow-popups";
                 iframe.allowFullscreen = true;
                 doc.body.style.margin = "0";
                 doc.body.appendChild(iframe);
@@ -141,15 +138,9 @@ allow-forms allow-popups";
         function openCustomUrl() {
             const input = document.getElementById("customUrlInput");
             if (!input) return;
-
             const url = input.value.trim();
-            if (!url) {
-                alert("Please enter a destination web URL first.");
-                return;
-            }
-
-            const finalUrl = url.startsWith("http://") ||
-url.startsWith("https://") ? url : "https://" + url;
+            if (!url) return alert("Enter a URL first");
+            const finalUrl = url.startsWith("http") ? url : "https://" + url;
             playInIframe(finalUrl);
         }
     </script>

@@ -1,0 +1,426 @@
+
+<!DOCTYPE html> 
+<!-- I see you deke you flipping bum why are you in the source code--> 
+<html> 
+<head> 
+    <link rel="icon" href="shh.jpg" sizes="32x32" /> 
+    <link rel="preconnect" href="https://googleapis.com"> 
+    <link rel="preconnect" href="https://gstatic.com" crossorigin> 
+    <link href="https://googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+</head> 
+<title>TERCES A STI</title> 
+<meta charset="utf-8" /> 
+<body style="background-color: var(--bckclr); cursor: url(shh.jpg) 0 0, auto;"> 
+<style> 
+:root { 
+    --bckclr: #0a0714; 
+    --btnclr: #b549ff; 
+    --panel-glow: rgba(181, 73, 255, 0.2); 
+    --border-frame: rgba(255, 255, 255, 0.07); 
+    /* Force browser to scale down your root shh.jpg file automatically to 24x24 pixels */
+    --custom-cursor: url(shh.jpg) 0 0, auto; 
+} 
+
+/* Custom Responsive Scrollbar */ 
+::-webkit-scrollbar { 
+    width: 8px; 
+    height: 8px; 
+} 
+::-webkit-scrollbar-track { 
+    background: var(--bckclr); 
+} 
+::-webkit-scrollbar-thumb { 
+    background: var(--btnclr); 
+    border-radius: 10px; 
+} 
+
+body { 
+    margin: 0; 
+    padding: 30px 15px; 
+    box-sizing: border-box; 
+    min-height: 100vh; 
+    background-image: radial-gradient(circle at 50% -10%, #24113a 0%, var(--bckclr) 70%); 
+    cursor: var(--custom-cursor);
+} 
+
+.button { 
+    position: relative; 
+    cursor: var(--custom-cursor); 
+    width: clamp(100px, 11vw, 140px); 
+    aspect-ratio: 1 / 1; /* forces a perfect square */ 
+    height: auto; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    border: 1px solid var(--border-frame); 
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); 
+    background-color: rgba(255, 255, 255, 0.02); 
+    backdrop-filter: blur(12px); 
+    transition: 0.3s ease-in-out; 
+    padding: 0; 
+} 
+
+/* Image fills entire button */ 
+.button img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block; 
+    transition: 0.3s ease-in-out; 
+    filter: brightness(0.85); 
+} 
+
+/* Text overlay (hidden by default) */ 
+.button span { 
+    position: absolute; 
+    bottom: 0; 
+    left: 50%; 
+    transform: translateX(-50%) translateY(8px); /* centers it perfectly */ 
+    width: 100%; 
+    padding: 16px 10px; 
+    background: linear-gradient(transparent, rgba(10, 7, 20, 0.98) 65%); 
+    color: white; 
+    font-family: "Jost", sans-serif; 
+    font-size: 13px; 
+    font-weight: 600; 
+    letter-spacing: 1px; 
+    text-align: center; 
+    opacity: 0; 
+    box-sizing: border-box; 
+    transition: 0.3s ease-in-out; 
+} 
+
+/* Hover effects */ 
+.button:hover { 
+    transform: translateY(-5px); 
+    border-color: var(--btnclr); 
+    box-shadow: 0 12px 30px var(--panel-glow); 
+} 
+.button:hover img { 
+    filter: brightness(0.35) scale(1.05); 
+} 
+.button:hover span { 
+    opacity: 1; 
+    transform: translateX(-50%) translateY(0); 
+} 
+
+.clrb { 
+    cursor: var(--custom-cursor); 
+    background-color: rgba(255, 255, 255, 0.02); 
+    border: 1px solid var(--btnclr); 
+    color: var(--btnclr); 
+    font-size: 13px; 
+    font-weight: 600; 
+    letter-spacing: 1px; 
+    width: 130px; 
+    height: 36px; 
+    border-radius: 12px; 
+    text-transform: uppercase; 
+    backdrop-filter: blur(10px); 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    box-shadow: 0 4px 15px var(--panel-glow); 
+    font-family: "Jost", sans-serif; 
+} 
+.clrb:hover { 
+    background-color: var(--btnclr); 
+    color: #ffffff; 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 25px var(--btnclr); 
+} 
+
+.button2 { 
+    cursor: var(--custom-cursor); 
+    background-color: transparent; 
+    border: 2px solid var(--btnclr); 
+    color: var(--btnclr) ; 
+    font-size: 14px; 
+    width: 22%; 
+    height: 40px; 
+    border-radius: 5px; 
+    transition: all 0.3s ease-in-out; 
+    box-shadow: 0 0 10px var(--btnclr) , inset 0 0 5px var(--btnclr) ; 
+    font-family: "Jost", sans-serif; 
+} 
+.button2:hover { 
+    background-color: var(--btnclr) ; 
+    color: var(--bckclr); 
+    border-radius: 100px; 
+    cursor: var(--custom-cursor); 
+    box-shadow: 0 0 20px var(--btnclr), inset 0 0 5px var(--btnclr) ; 
+} 
+
+.button-grid { 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    cursor: var(--custom-cursor); 
+    padding: 10px; 
+    gap: 20px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+} 
+
+h1 { 
+    cursor: var(--custom-cursor); 
+    color: #ffffff; 
+    font-size: clamp(2rem, 6vw, 3.8rem); 
+    text-align: center; 
+    font-family: "Jost", sans-serif; 
+    letter-spacing: 14px; 
+    margin: 20px 0 0 0; 
+    font-weight: 900; 
+    text-shadow: 0 0 25px var(--panel-glow); 
+} 
+
+h2 { 
+    cursor: var(--custom-cursor); 
+    color: var(--btnclr); 
+    font-size: 14px; 
+    text-align: center; 
+    font-family: "Jost", sans-serif; 
+    letter-spacing: 5px; 
+    text-transform: uppercase; 
+    opacity: 0.85; 
+} 
+
+.link { 
+    cursor: var(--custom-cursor); 
+    color: var(--btnclr); 
+    font-size: 13px; 
+    text-align: center; 
+    font-family: "Jost", sans-serif; 
+    letter-spacing: 6px; 
+    text-shadow:1px 1px 3px var(--btnclr) , 1px 1px 3px var(--btnclr) ; 
+} 
+
+.button-grid2 { 
+    display: flex; 
+    cursor: var(--custom-cursor); 
+    justify-content: center; 
+    flex-wrap: wrap; 
+} 
+
+.dark { 
+    display: flex; 
+    cursor: var(--custom-cursor); 
+    justify-content: right; 
+    flex-wrap: wrap; 
+    max-width: 1200px; 
+    margin: 0 auto 15px auto; 
+} 
+
+#game-count { 
+    text-align: center; 
+    color: rgba(255, 255, 255, 0.25); 
+    font-family: "Jost", sans-serif; 
+    font-size: 13px; 
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+    margin-top: 40px; 
+} 
+</style> 
+
+<div class="dark"></div> 
+<div class="button-grid"> 
+    <h1>ITS A SECRET</h1> 
+</div> 
+<br> 
+<br> 
+<div class="button-grid"> 
+    <h2 id="splash-text"></h2> 
+</div> 
+<div class="button-grid"> 
+    <input type="text" id="search" placeholder="Search games..." style="width:90%;max-width:400px;height:42px;border-radius:12px;border:1px solid var(--border-frame);background:rgba(255,255,255,0.02);color:#ffffff;font-size:16px;padding:0 15px;outline:none;box-shadow:0 8px 32px rgba(0,0,0,0.2);font-family:'Jost',sans-serif;backdrop-filter:blur(8px);transition:all 0.3s ease;cursor: var(--custom-cursor);"> 
+</div> 
+<div class="button-grid" id="game-buttons"></div> 
+<p id="game-count"></p> 
+
+<script> 
+// Add focus styles dynamically to match the styling 
+document.getElementById("search").addEventListener("focus", function() { 
+    this.style.borderColor = "var(--btnclr)"; 
+    this.style.boxShadow = "0 0 20px var(--panel-glow)"; 
+}); 
+document.getElementById("search").addEventListener("blur", function() { 
+    this.style.borderColor = "var(--border-frame)"; 
+    this.style.boxShadow = "0 8px 32px rgba(0,0,0,0.2)"; 
+}); 
+
+const hideKeywords = [ 
+    "baldi", "adventure", "bad", "race", "aqua", "alien", "merge", "robbery", 
+    "bfdia", "archery", "friday", "run", "build", "baz", "port", "master", 
+    "arthur", "blade", "bloo", "achieve", "-battle", "fu", "cut-", "bend", 
+    "basketball", "frvr", "ball-", 
+]; 
+
+async function loadSplashText() {
+    const splashUrl = "https://raw.githubusercontent.com/lewismann623-creator/cheetopuff/refs/heads/main/assets/images/splash.txt";
+    
+    // 1. Fallback list of splash texts used if the URL link fails
+    const fallbackSplashes = [
+        
+        "MMM...DONUTS"
+    ];
+
+    try {
+        const res = await fetch(splashUrl);
+        if (!res.ok) throw new Error("Network response error");
+        
+        const text = await res.text();
+        if (text && text.trim().length > 0) {
+            // 2. Split the file contents by new lines into an array
+            const splashes = text.split('\n')
+                                 .map(line => line.trim())
+                                 .filter(line => line.length > 0);
+            
+            // 3. Pick a random item from the file list
+            const randomSplash = splashes[Math.floor(Math.random() * splashes.length)];
+            document.getElementById("splash-text").textContent = randomSplash.toUpperCase();
+            return;
+        }
+    } catch (err) {
+        console.warn("Failed loading remote splash payload, using local random asset string.", err);
+    }
+
+    // 4. Fallback handler picks a random item from your local list if the fetch breaks
+    const randomFallback = fallbackSplashes[Math.floor(Math.random() * fallbackSplashes.length)];
+    document.getElementById("splash-text").textContent = randomFallback.toUpperCase();
+}
+
+function shouldHide(name) { 
+    const lower = name.toLowerCase(); 
+    return hideKeywords.some(k => lower.includes(k)); 
+} 
+
+function setButtonColor(color) { 
+    document.body.style.setProperty('--btnclr', color); 
+} 
+
+function setBackgroundColor(color) { 
+    document.body.style.setProperty('--bckclr', color); 
+} 
+
+setButtonColor('#b549ff'); 
+setBackgroundColor('#0a0714'); 
+
+async function opengame(url) { 
+    const res = await fetch(url); 
+    if (!res.ok) return; 
+    const html = await res.text(); 
+    const win = window.open(); 
+    if (!win) return; 
+    win.document.body.style.margin = "0"; 
+    win.document.body.style.height = "100vh"; 
+    const iframe = win.document.createElement("iframe"); 
+    iframe.style.border = "none"; 
+    iframe.style.width = "100%"; 
+    iframe.style.height = "100%"; 
+    iframe.srcdoc = html; 
+    win.document.body.appendChild(iframe); 
+} 
+
+function playInIframe(url) { 
+    const win = window.open("about:blank", "_blank"); 
+    if (!win) return; 
+    setTimeout(() => { 
+        const doc = win.document; 
+        const iframe = doc.createElement("iframe"); 
+        iframe.src = url; 
+        iframe.style.position = "fixed"; 
+        iframe.style.top = "0"; 
+        iframe.style.left = "0"; 
+        iframe.style.width = "100vw"; 
+        iframe.style.height = "100vh"; 
+        iframe.style.border = "none"; 
+        iframe.sandbox = "allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-popups"; 
+        iframe.allowFullscreen = true; 
+        doc.body.style.margin = "0"; 
+        doc.body.appendChild(iframe); 
+    }, 200); 
+} 
+
+function updateGameCount() { 
+    const count = document.querySelectorAll("#game-buttons button").length; 
+    const el = document.getElementById("game-count"); 
+    if (el) el.textContent = "Total Games: " + count; 
+} 
+
+async function loadGames() { 
+    const gamesApi = "https://api.github.com/repos/lewismann623-creator/cheetopuff/contents/assets/games"; 
+    const imagesApi = "https://api.github.com/repos/lewismann623-creator/cheetopuff/contents/assets/images"; 
+    
+    const [gamesRes, imagesRes] = await Promise.all([ 
+        fetch(gamesApi), 
+        fetch(imagesApi) 
+    ]); 
+    const gameFiles = await gamesRes.json(); 
+    const imageFiles = await imagesRes.json(); 
+    const games = {}; 
+
+    // Process HTML game files 
+    gameFiles.forEach(file => { 
+        if (file.name.endsWith(".html")) { 
+            const name = file.name.split(".")[0]; 
+            games[name] = { html: file.download_url }; 
+        } 
+    }); 
+
+    // Process images 
+    imageFiles.forEach(file => { 
+        if (file.name.match(/\.(png|jpg|jpeg|gif)$/i)) { 
+            const name = file.name.split(".")[0]; 
+            if (!games[name]) games[name] = {}; 
+            games[name].img = file.download_url; 
+        } 
+    }); 
+
+    const container = document.getElementById("game-buttons"); 
+    Object.keys(games).forEach(name => { 
+        if (!games[name].html) return; 
+        if (shouldHide(name)) return; 
+        const game = games[name]; 
+        const btn = document.createElement("button"); 
+        btn.className = "button"; 
+        btn.innerHTML = ` 
+            <img src="${game.img || ''}" loading="lazy"> 
+            <span>${name.replace(/-/g, " ")}</span> 
+        `; 
+        btn.onclick = () => opengame(game.html); 
+        container.appendChild(btn); 
+    }); 
+    updateGameCount(); 
+} 
+
+function addGame(name, icon, url) { 
+    if (shouldHide(name)) return; 
+    const container = document.getElementById("game-buttons"); 
+    const btn = document.createElement("button"); 
+    btn.className = "button"; 
+    btn.innerHTML = ` 
+        <img src="${icon}"> 
+        <span>${name}</span> 
+    `; 
+    btn.onclick = () => playInIframe(url); 
+    container.appendChild(btn); 
+    updateGameCount(); 
+} 
+
+document.getElementById("search").addEventListener("input", function () { 
+    const term = this.value.toLowerCase(); 
+    const buttons = document.querySelectorAll("#game-buttons button"); 
+    buttons.forEach(btn => { 
+        const text = btn.textContent.toLowerCase(); 
+        btn.style.display = text.includes(term) ? "flex" : "none"; 
+    }); 
+}); 
+
+(async () => { 
+    await loadGames(); 
+    await loadSplashText(); 
+    addGame("deadshot", "https://deadshot.io/favicon.png", "https://deadshot.io"); 
+    addGame("escape road working", "https://api.github.com/repos/lewismann623-creator/cheetopuff/contents/assets/images/escape-road.png", "https://escaperoad.io/escape-road"); 
+    addGame("ships 3d", "https://yp3d.com/favicon.png", "https://yp3d.com/ships3d"); 
+    addGame("speed stars", "https://1games.io/speed-stars", "https://speedstars2.io"); 
+})(); 
+</script> 
+</body> 
+</html>
